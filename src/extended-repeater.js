@@ -28,20 +28,24 @@ function repeater(str, options) {
     options.additionRepeatTimes = 1;
   }
 
-  if (options.addition === null) {
-    options.addition === ' ';
-  }
-
   let arr2 = [];
 
   for (let i = 0; i < options.additionRepeatTimes; i++) {
-    arr2.push(options.addition)
+    if (options.addition === null) {
+      arr2.push(`${options.addition}`)
+    } else {
+      arr2.push(options.addition)
+    }
   }
 
   let arr = [];
 
   for(let i = 0; i < options.repeatTimes; i++) {
-    arr.push(`${str}${arr2.join(`${options.additionSeparator}`)}`)
+    if (options.additionSeparator === undefined) {
+      arr.push(`${str}${arr2.join('|')}`)
+    } else {
+      arr.push(`${str}${arr2.join(`${options.additionSeparator}`)}`)
+    }
   }
   
   return arr.join(`${options.separator}`)
